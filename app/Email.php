@@ -10,7 +10,7 @@ class Email
 {
     private $mail = \stdClass::class;
 
-    public function __construct($smtp, $user, $pass, $port, $secure, $fromEmail, $fromName, $debug = false)
+    public function __construct($smtp, $user, $pass, $port, $secure, $fromEmail, $fromName, $dev = false, $debug = false)
     {
         $this->mail = new PHPMailer(true);
         
@@ -28,15 +28,16 @@ class Email
         $this->mail->CharSet = 'utf-8';
         $this->mail->setLanguage('br');
 
-        $this->mail->SMTPOptions = array(
-            'ssl' => [
-                'verify_peer' => false,
-                'verify_depth' => false,
-                'allow_self_signed' => true
-            ],
-        );
+        if($dev){
+            $this->mail->SMTPOptions = array(
+                'ssl' => [
+                    'verify_peer' => false,
+                    'verify_depth' => false,
+                    'allow_self_signed' => true
+                ],
+            );
+        }
 
-        //Recipients
         $this->mail->setFrom($fromEmail, $fromName);  
     }
     public function sendMail($subject, $body, $addressEmail, $addressName,$replyEmail, $replyName)
