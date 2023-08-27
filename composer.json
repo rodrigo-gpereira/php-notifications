@@ -1,0 +1,25 @@
+{
+    "name": "rodrigo-gpereira/notifications",
+    "description": "A Library that uses composer as the basis for generating email notifications",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rodrigo Gomes",
+            "email": "rodrigo.dev.ux@outlook.com",
+	    "role": "Developer"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "phpmailer/phpmailer": "^6.8"
+    },
+    "config": {
+	    "vendor-dir": "libs"
+    },
+    "autoload": {
+        "psr-4": {
+            "Notifications\\": "app"
+        }
+    }
+}
